@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Importación de estilos -->
   <link rel="stylesheet" href="./styles/normalize.css">
   <link rel="stylesheet" href="./styles/indexStyle.css">
+  <link rel="stylesheet" href="./styles/footerStyle.css">
+  <link rel="stylesheet" href="./styles/modaStyle.css">
+  
   <link rel="icon" href="./assets/img/logoBoggle.ico">
   <title>Boggle</title>
 </head>
@@ -42,6 +46,27 @@
   </main>
   <footer class="containerFooter">
     <h3>FOOTER</h3>
+    <div class="formClass">
+      <form action="" class="containerFormFooter">
+        <div>
+          <label for="">Nombre: </label>
+          <input type="text" name="name" id="name" placeholder="Nombre" required>
+        </div>
+        <div>
+          <label for="">Email:  </label>
+          <input type="email" name="email" id="email" placeholder="Correo" required>
+        </div>
+        <div>
+          <label for="">Mensaje: </label>
+          <textarea name="mensaje" id="mensaje" placeholder="Mensaje..." required></textarea>
+        </div>
+        <div class="containerBtn">
+          <input type="submit" value="Enviar" id="submit">
+        </div>
+      </form>
+    </div>
   </footer>
+  <!-- Importación de scripts -->
+  <script src="./scripts/validators/form.validator.js"></script>
 </body>
 </html>
