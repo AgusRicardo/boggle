@@ -6,30 +6,33 @@
   align-items: center;
   width: 50%; 
   margin: 0 auto;
+  padding: 10px;
 }
 
 .containerFormFooter div {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.footerLabel{
+  width: 100%;
+  text-align: start;
 }
 
 .containerFormFooter input,
 .containerFormFooter textarea {
   padding: 6px;
   margin: 5px;
-  width: 40%;
+  width: 50%;
 }
 .containerFormFooter label{
-  width: 20%;
-  text-align: right;
-  padding-right: 10px;
+  width: 10%;
 }
 .containerBtn{
-  width: 100%;
+  width: 20%;
   display: flex;
-  margin-top: 20px;
+  margin-top: 4px;
 }
 
 a {
@@ -38,8 +41,10 @@ a {
   display: flex;
   align-items: center;
 }
+
 img.github-icon {
   width: 24px; 
   height: 24px; 
   margin-right: 8px; 
+  margin-top: 4px;
 }
