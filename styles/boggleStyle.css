@@ -1,0 +1,23 @@
+.boggleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px; 
+  max-width: 225px; 
+  margin: auto;
+}
+.boggleCell {
+  width: 50px; 
+  height: 50px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  font-size: 1.5em;
+  background-color: #f0f0f0; 
+  cursor: pointer;
+}
+.boggleCell:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.08); 
+}
