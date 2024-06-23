@@ -35,6 +35,10 @@
   margin-top: 4px;
 }
 
+.containerBtn input{
+  cursor: pointer;
+}
+
 a {
   text-decoration: none; 
   color: #333;
