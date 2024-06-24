@@ -35,7 +35,18 @@
     <section class="sectionContainer">
       <h3>SECTION</h3>
       <div>
-        <div class="boggleGrid">
+        <div id="userInputSection">
+          <input type="text" id="userName" placeholder="Ingrese su nombre" autocomplete="off" maxlength="20" required>
+          <div class="containerTimeButtons">
+            <p class="titleTimeSelect">Seleccionar duración de juego</p>
+            <button class="timeButton" data-time="1">1 MIN</button>
+            <button class="timeButton" data-time="2">2 MIN</button>
+            <button class="timeButton" data-time="3">3 MIN</button>
+          </div>
+          <button id="playButton">Jugar</button>
+        </div>
+      <div>
+        <div id="boggleGrid">
           <div class="boggleCell"></div>
           <div class="boggleCell"></div>
           <div class="boggleCell"></div>
