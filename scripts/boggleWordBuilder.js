@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const handlePlayButtonClick = () => {
     const boggleWrapper = document.getElementById("boggleWrapper");
     boggleWrapper.style.display = "flex";
+
     const wordInputContainer = document.createElement("div");
     wordInputContainer.id = "wordInputContainer";
     const wordInput = document.createElement("input");
@@ -11,13 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     wordInput.id = "formedWord";
     wordInput.placeholder = "Palabra formada";
     wordInput.readOnly = true;
+    wordInput.maxLength = 16;
+
     wordInputContainer.appendChild(wordInput);
     boggleWrapper.appendChild(wordInputContainer);
+
     const boggleCells = document.querySelectorAll(".boggleCell");
 
     const handleCellClick = (event) => {
       const letter = event.target.textContent;
-      wordInput.value += letter;
+      if (wordInput.value.length < 16) {
+        wordInput.value += letter;
+      }
     };
 
     boggleCells.forEach((cell) => {
