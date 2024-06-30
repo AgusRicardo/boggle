@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const handlePlayButtonClick = () => {
     const boggleWrapper = document.getElementById("boggleWrapper");
     boggleWrapper.style.display = "flex";
+    boggleWrapper.style.flexDirection = "column"; 
 
     const wordInputContainer = document.createElement("div");
     wordInputContainer.id = "wordInputContainer";
@@ -15,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     wordInput.maxLength = 16;
 
     wordInputContainer.appendChild(wordInput);
-    boggleWrapper.appendChild(wordInputContainer);
+
+    const boggleGrid = document.getElementById("boggleGrid");
+    boggleWrapper.insertBefore(wordInputContainer, boggleGrid);
 
     const boggleCells = document.querySelectorAll(".boggleCell");
 
