@@ -2,6 +2,7 @@ var selectedTime = null;
 var timerInterval = null;
 var foundWords = 0;
 var scoreFoundWords = 0;
+var words = [];
 
 var timeButtons = document.getElementsByClassName('timeButton');
 for (var i = 0; i < timeButtons.length; i++) {
@@ -84,8 +85,14 @@ function calculateScore(wordLength) {
 }
 
 function addWordToTable(word, isValid) {
+  var formedWord = document.getElementById("formedWord");
   var tableBody = document.querySelector("#wordsTable tbody");
   var newRow = document.createElement("tr");
+  var errorWordExist = document.getElementById("errorWordExist");
+
+  if (errorWordExist) {
+    errorWordExist.remove();
+  }
 
   var wordCell = document.createElement("td");
   wordCell.textContent = word;
@@ -93,6 +100,17 @@ function addWordToTable(word, isValid) {
 
   var scoreCell = document.createElement("td");
   if (isValid) {
+    var existing = words.includes(word);
+    existing ? undefined : words.push(word);
+
+    if (existing) {
+      var errorWordExist = document.createElement("span");
+      errorWordExist.id = "errorWordExist";
+      errorWordExist.textContent = "Palabra ya encontrada anteriormente.";
+      errorWordExist.style.color = "yellow";
+      errorWordExist.style.display = "block";
+      return formedWord.parentNode.appendChild(errorWordExist);
+    }
     var score = calculateScore(word.length);
     scoreCell.textContent = score;
     scoreFoundWords += score;
