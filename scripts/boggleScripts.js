@@ -39,41 +39,41 @@ document.getElementById("playButton").onclick = function () {
 };
 
 function getRandomLetter() {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return alphabet[Math.floor(Math.random() * alphabet.length)];
 }
 
 function populateBoggleGrid() {
-  const cells = document.querySelectorAll("#boggleGrid .boggleCell");
-  cells.forEach((cell) => {
-    cell.textContent = getRandomLetter();
-  });
+  var cells = document.querySelectorAll("#boggleGrid .boggleCell");
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].textContent = getRandomLetter();
+  }
 }
 
 function saveScore(userName, score) {
-  let scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
-  let currentDate = new Date().toLocaleDateString("es-ES");
-  scores.push({ userName, score, date: currentDate });
+  var scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
+  var currentDate = new Date().toLocaleDateString("es-ES");
+  scores.push({ userName: userName, score: score, date: currentDate });
   localStorage.setItem("boggleScores", JSON.stringify(scores));
 }
 
 document.getElementById("showScoresButton").onclick = function () {
-  let scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
+  var scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
 
-  scores.sort((a, b) => b.score - a.score);
+  scores.sort(function (a, b) {
+    return b.score - a.score;
+  });
 
-  let scoresTableBody = document.getElementById("scoresTableBody");
-  scoresTableBody.innerHTML = scores
-    .map(
-      (score) => `
-    <tr>
-      <td>${score.userName}</td>
-      <td>${score.score}</td>
-      <td>${score.date}</td>
-    </tr>
-  `
-    )
-    .join("");
+  var scoresTableBody = document.getElementById("scoresTableBody");
+  var scoresHtml = "";
+  for (var i = 0; i < scores.length; i++) {
+    scoresHtml += "<tr>";
+    scoresHtml += "<td>" + scores[i].userName + "</td>";
+    scoresHtml += "<td>" + scores[i].score + "</td>";
+    scoresHtml += "<td>" + scores[i].date + "</td>";
+    scoresHtml += "</tr>";
+  }
+  scoresTableBody.innerHTML = scoresHtml;
 
   var modal = document.getElementById("scoresModal");
   modal.style.display = "block";
@@ -101,9 +101,7 @@ function startTimer(minutes) {
     timerInterval = setInterval(function () {
       var minutes = Math.floor(remainingTime / 60);
       var seconds = remainingTime % 60;
-      timerDisplay.textContent = `${minutes}:${
-        seconds < 10 ? "0" : ""
-      }${seconds}`;
+      timerDisplay.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 
       if (remainingTime <= 10) {
         timerDisplay.style.color = "red";
@@ -124,7 +122,7 @@ function startTimer(minutes) {
         );
         window.showModal(
           "Tiempo finalizado!",
-          `<b>Palabras encontradas:</b> ${foundWords} </br> <b>Puntaje total:</b> ${scoreFoundWords} puntos.`
+          "<b>Palabras encontradas:</b> " + foundWords + " </br> <b>Puntaje total:</b> " + scoreFoundWords + " puntos."
         );
       }
       remainingTime--;
@@ -165,8 +163,8 @@ function addWordToTable(word, isValid) {
 
   var scoreCell = document.createElement("td");
   if (isValid) {
-    var existing = words.includes(word);
-    existing ? undefined : words.push(word);
+    var existing = words.indexOf(word) !== -1;
+    if (!existing) words.push(word);
 
     if (existing) {
       var errorWordExist = document.createElement("span");
