@@ -1,5 +1,7 @@
 var selectedTime = null;
 var timerInterval = null;
+var foundWords = 0;
+var scoreFoundWords = 0;
 
 var timeButtons = document.getElementsByClassName('timeButton');
 for (var i = 0; i < timeButtons.length; i++) {
@@ -55,6 +57,8 @@ function startTimer(minutes) {
         if (remainingTime <= 0) {
           clearInterval(timerInterval);
           timerDisplay.textContent = 'Tiempo terminado';
+          window.showModal('Tiempo finalizado!', `<b>Palabras encontradas:</b> ${foundWords} 
+                                              </br> <b>Puntaje total:</b> ${scoreFoundWords} puntos.`);
         }
   
         remainingTime--;
@@ -89,9 +93,13 @@ function addWordToTable(word, isValid) {
 
   var scoreCell = document.createElement("td");
   if (isValid) {
-    scoreCell.textContent = calculateScore(word.length);
+    var score = calculateScore(word.length);
+    scoreCell.textContent = score;
+    scoreFoundWords += score;
+    foundWords++;
   } else {
-    scoreCell.textContent = "0";
+    scoreCell.textContent = "-1";
+    scoreFoundWords = Math.max(0, scoreFoundWords - 1);
     scoreCell.classList.add("invalid-word");
   }
   newRow.appendChild(scoreCell);
