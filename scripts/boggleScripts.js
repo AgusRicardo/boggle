@@ -3,6 +3,8 @@ var timerInterval = null;
 var foundWords = 0;
 var scoreFoundWords = 0;
 var words = [];
+var selectedWord = '';
+var isValidLetter = true;
 
 var timeButtons = document.getElementsByClassName('timeButton');
 for (var i = 0; i < timeButtons.length; i++) {
@@ -39,15 +41,19 @@ function getRandomLetter() {
 
 function populateBoggleGrid() {
   const cells = document.querySelectorAll('#boggleGrid .boggleCell');
-  cells.forEach(cell => {
-    cell.textContent = getRandomLetter();
+  cells.forEach((cell, index) => {
+    const randomLetter = getRandomLetter();
+    cell.textContent = randomLetter;
+    cell.dataset.row = Math.floor(index / 4); 
+    cell.dataset.column = index % 4; 
+    cell.onclick = randomLetterClicked;
   });
 }
 
 function startTimer(minutes) {
   var remainingTime = minutes * 60;
   var timerDisplay = document.getElementById('timerDisplay');
-  var alertSound = new Audio('./assets/sounds/alert.mp3');
+  //var alertSound = new Audio('./assets/sounds/alert.mp3');
 
   timerDisplay.textContent = '...'; 
 
@@ -135,4 +141,27 @@ function addWordToTable(word, isValid) {
   newRow.appendChild(scoreCell);
 
   tableBody.appendChild(newRow);
+}
+
+function randomLetterClicked(event) {
+  var clickedCell = event.target;
+  var clickedLetter = clickedCell.textContent;
+
+  var selectedCells = document.querySelectorAll('#boggleGrid .boggleCell.selected');
+  var lastSelectedCell = selectedCells[selectedCells.length - 1];
+  
+  if (isCellSelectable(lastSelectedCell, clickedCell)) {
+    selectedCells.forEach(cell => cell.classList.remove('selected'));
+    
+    selectedWord += clickedLetter;  
+    clickedCell.classList.add('selected'); 
+    isValidLetter = true;
+  } else {
+    clickedCell.classList.add('invalid-selection');
+    isValidLetter = false;
+
+    setTimeout(function() {
+      clickedCell.classList.remove('invalid-selection');
+    }, 1000);
+  }
 }

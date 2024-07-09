@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const boggleCells = document.querySelectorAll(".boggleCell");
 
     const handleCellClick = (event) => {
-      const letter = event.target.textContent;
-      if (wordInput.value.length < 16) {
+      var letter = event.target.textContent;
+      if (wordInput.value.length < 16 && isValidLetter) {
         wordInput.value += letter;
       }
     };
