@@ -27,7 +27,6 @@
 }
 
 .boggleCell:hover {
-  background-color: #e0e0e0;
   transform: scale(1.08);
 }
 
@@ -87,4 +86,14 @@
   padding: 10px 20px;
   border: 1px solid black;
   border-radius: 4px;
+}
+
+.invalid-selection {
+  background-color: #f8d7da; 
+  transition: background-color 0.3s ease; 
+}
+
+.selected{
+  background-color: #d4edda; 
+  transition: background-color 0.3s ease; 
 }

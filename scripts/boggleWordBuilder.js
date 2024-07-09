@@ -1,14 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const playButton = document.getElementById("playButton");
+document.addEventListener("DOMContentLoaded", function() {
+  var playButton = document.getElementById("playButton");
 
-  const handlePlayButtonClick = () => {
-    const boggleWrapper = document.getElementById("boggleWrapper");
+  var handlePlayButtonClick = function() {
+    var boggleWrapper = document.getElementById("boggleWrapper");
     boggleWrapper.style.display = "flex";
     boggleWrapper.style.flexDirection = "column"; 
 
-    const wordInputContainer = document.createElement("div");
+    var wordInputContainer = document.createElement("div");
     wordInputContainer.id = "wordInputContainer";
-    const wordInput = document.createElement("input");
+    var wordInput = document.createElement("input");
     wordInput.type = "text";
     wordInput.id = "formedWord";
     wordInput.placeholder = "Palabra formada";
@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     wordInputContainer.appendChild(wordInput);
 
-    const boggleGrid = document.getElementById("boggleGrid");
+    var boggleGrid = document.getElementById("boggleGrid");
     boggleWrapper.insertBefore(wordInputContainer, boggleGrid);
 
-    const boggleCells = document.querySelectorAll(".boggleCell");
+    var boggleCells = document.querySelectorAll(".boggleCell");
 
-    const handleCellClick = (event) => {
-      const letter = event.target.textContent;
-      if (wordInput.value.length < 16) {
+    var handleCellClick = function(event) {
+      var letter = event.target.textContent;
+      if (wordInput.value.length < 16 && isValidLetter) {
         wordInput.value += letter;
       }
     };
