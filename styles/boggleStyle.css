@@ -67,6 +67,13 @@
   cursor: pointer;
 }
 
+#validarButton {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
 .titleTimeSelect {
   font-style: italic;
   font-size: 14px;

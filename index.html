@@ -66,13 +66,22 @@
             <div class="boggleCell"></div>
             <div class="boggleCell"></div>
           </div>
+          <button id="validarButton">Validar</button>
         </div>
       </div>
     </section>
     <aside class="asideContainer">
       <h3>ASIDE</h3>
-      <div>
-        <p>Contenido del aside</p>
+      <div class="containerScore">
+        <table id="wordsTable">
+          <thead>
+            <tr>
+              <th>Palabra</th>
+              <th>Puntuación</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </aside>
   </main>
@@ -110,5 +119,6 @@
   <script src="./scripts/validators/form.validator.js"></script>
   <script src="./scripts/boggleScripts.js"></script>
   <script src="./scripts/boggleWordBuilder.js"></script>
+  <script src="./scripts/validators/word.validator.js"></script>
 </body>
 </html>

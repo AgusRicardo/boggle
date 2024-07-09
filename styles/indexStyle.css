@@ -16,6 +16,12 @@ body{
   text-align: center;
   height: 90vh;
 }
+
+.containerScore {
+  display: flex;
+  justify-content: center;
+}
+
 #stickyHeader {
   background-color: #f8f9fa;
   border: 1px solid #000;
@@ -52,4 +58,30 @@ body{
   text-align: center;
   padding: 10px;
   border: 1px solid #000;
+}
+
+#wordsTable{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#wordsTable th,
+#wordsTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#wordsTable th {
+  background-color: #f2f2f2;
+}
+
+#wordsTable tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#wordsTable .invalid-word {
+  color: red;
+  font-weight: bold;
 }
