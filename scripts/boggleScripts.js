@@ -4,82 +4,135 @@ var foundWords = 0;
 var scoreFoundWords = 0;
 var words = [];
 
-var timeButtons = document.getElementsByClassName('timeButton');
+var timeButtons = document.getElementsByClassName("timeButton");
 for (var i = 0; i < timeButtons.length; i++) {
-  timeButtons[i].onclick = function() {
-    selectedTime = parseInt(this.getAttribute('data-time'));
+  timeButtons[i].onclick = function () {
+    selectedTime = parseInt(this.getAttribute("data-time"));
     for (var j = 0; j < timeButtons.length; j++) {
-      timeButtons[j].style.backgroundColor = '';
+      timeButtons[j].style.backgroundColor = "";
     }
-    this.style.backgroundColor = 'lightblue';
+    this.style.backgroundColor = "lightblue";
   };
 }
 
-document.getElementById('playButton').onclick = function() {
-  var userName = document.getElementById('userName').value.trim();
+document.getElementById("playButton").onclick = function () {
+  var userName = document.getElementById("userName").value.trim();
   if (userName.length >= 3 && selectedTime !== null) {
-    document.getElementById('userInputSection').style.display = 'none';
-    document.getElementById('boggleGrid').style.display = 'grid';
-    document.getElementById('timerDisplay').style.display = 'block';
+    document.getElementById("userInputSection").style.display = "none";
+    document.getElementById("boggleGrid").style.display = "grid";
+    document.getElementById("timerDisplay").style.display = "block";
     startTimer(selectedTime);
   } else {
     if (userName.length < 3) {
-      window.showModal('Validación nombre:', 'Por favor, ingresa un nombre con al menos 3 letras.');
+      window.showModal(
+        "Validación nombre:",
+        "Por favor, ingresa un nombre con al menos 3 letras."
+      );
     }
     if (selectedTime === null) {
-      window.showModal('Validación tiempo de juego:', 'Por favor, selecciona un tiempo de juego.');
+      window.showModal(
+        "Validación tiempo de juego:",
+        "Por favor, selecciona un tiempo de juego."
+      );
     }
   }
 };
 
 function getRandomLetter() {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return alphabet[Math.floor(Math.random() * alphabet.length)];
 }
 
 function populateBoggleGrid() {
-  const cells = document.querySelectorAll('#boggleGrid .boggleCell');
-  cells.forEach(cell => {
+  const cells = document.querySelectorAll("#boggleGrid .boggleCell");
+  cells.forEach((cell) => {
     cell.textContent = getRandomLetter();
   });
 }
 
-function startTimer(minutes) {
-  var remainingTime = minutes * 60;
-  var timerDisplay = document.getElementById('timerDisplay');
-  var alertSound = new Audio('./assets/sounds/alert.mp3');
-
-  timerDisplay.textContent = '...'; 
-
-  setTimeout(function() {
-      timerInterval = setInterval(function() {
-          var minutes = Math.floor(remainingTime / 60);
-          var seconds = remainingTime % 60;
-          timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-          if (remainingTime <= 10) {
-              timerDisplay.style.color = 'red';
-              if (remainingTime === 10) {
-                  alertSound.play(); 
-              }
-          } else {
-              timerDisplay.style.color = ''; 
-          }
-
-          if (remainingTime <= 0) {
-              clearInterval(timerInterval);
-              timerDisplay.style.color = 'black';
-              timerDisplay.textContent = 'Tiempo terminado';
-              window.showModal('Tiempo finalizado!', `<b>Palabras encontradas:</b> ${foundWords} 
-                                                    </br> <b>Puntaje total:</b> ${scoreFoundWords} puntos.`);
-          }
-
-          remainingTime--;
-      }, 1000);
-  }, 100);
+function saveScore(userName, score) {
+  let scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
+  let currentDate = new Date().toLocaleDateString("es-ES");
+  scores.push({ userName, score, date: currentDate });
+  localStorage.setItem("boggleScores", JSON.stringify(scores));
 }
 
-document.addEventListener('DOMContentLoaded', populateBoggleGrid);
+document.getElementById("showScoresButton").onclick = function () {
+  let scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
+
+  scores.sort((a, b) => b.score - a.score);
+
+  let scoresTableBody = document.getElementById("scoresTableBody");
+  scoresTableBody.innerHTML = scores
+    .map(
+      (score) => `
+    <tr>
+      <td>${score.userName}</td>
+      <td>${score.score}</td>
+      <td>${score.date}</td>
+    </tr>
+  `
+    )
+    .join("");
+
+  var modal = document.getElementById("scoresModal");
+  modal.style.display = "block";
+
+  var closeButton = modal.querySelector(".close");
+  closeButton.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+};
+
+function startTimer(minutes) {
+  var remainingTime = minutes * 60;
+  var timerDisplay = document.getElementById("timerDisplay");
+  var alertSound = new Audio("./assets/sounds/alert.mp3");
+
+  timerDisplay.textContent = "...";
+
+  setTimeout(function () {
+    timerInterval = setInterval(function () {
+      var minutes = Math.floor(remainingTime / 60);
+      var seconds = remainingTime % 60;
+      timerDisplay.textContent = `${minutes}:${
+        seconds < 10 ? "0" : ""
+      }${seconds}`;
+
+      if (remainingTime <= 10) {
+        timerDisplay.style.color = "red";
+        if (remainingTime === 10) {
+          alertSound.play();
+        }
+      } else {
+        timerDisplay.style.color = "";
+      }
+
+      if (remainingTime <= 0) {
+        clearInterval(timerInterval);
+        timerDisplay.style.color = "black";
+        timerDisplay.textContent = "Tiempo terminado";
+        saveScore(
+          document.getElementById("userName").value.trim(),
+          scoreFoundWords
+        );
+        window.showModal(
+          "Tiempo finalizado!",
+          `<b>Palabras encontradas:</b> ${foundWords} </br> <b>Puntaje total:</b> ${scoreFoundWords} puntos.`
+        );
+      }
+      remainingTime--;
+    }, 1000);
+  }, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", populateBoggleGrid);
 
 function calculateScore(wordLength) {
   if (wordLength >= 8) {
@@ -93,7 +146,7 @@ function calculateScore(wordLength) {
   } else if (wordLength == 3 || wordLength == 4) {
     return 1;
   }
-  return 0; 
+  return 0;
 }
 
 function addWordToTable(word, isValid) {
