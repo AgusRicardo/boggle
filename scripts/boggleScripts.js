@@ -63,3 +63,38 @@ function startTimer(minutes) {
   }
 
 document.addEventListener('DOMContentLoaded', populateBoggleGrid);
+
+function calculateScore(wordLength) {
+  if (wordLength >= 8) {
+    return 11;
+  } else if (wordLength == 7) {
+    return 5;
+  } else if (wordLength == 6) {
+    return 3;
+  } else if (wordLength == 5) {
+    return 2;
+  } else if (wordLength == 3 || wordLength == 4) {
+    return 1;
+  }
+  return 0; 
+}
+
+function addWordToTable(word, isValid) {
+  var tableBody = document.querySelector("#wordsTable tbody");
+  var newRow = document.createElement("tr");
+
+  var wordCell = document.createElement("td");
+  wordCell.textContent = word;
+  newRow.appendChild(wordCell);
+
+  var scoreCell = document.createElement("td");
+  if (isValid) {
+    scoreCell.textContent = calculateScore(word.length);
+  } else {
+    scoreCell.textContent = "0";
+    scoreCell.classList.add("invalid-word");
+  }
+  newRow.appendChild(scoreCell);
+
+  tableBody.appendChild(newRow);
+}
