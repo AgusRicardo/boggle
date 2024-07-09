@@ -44,27 +44,39 @@ function populateBoggleGrid() {
 }
 
 function startTimer(minutes) {
-    var remainingTime = minutes * 60;
-    var timerDisplay = document.getElementById('timerDisplay');
-    timerDisplay.textContent = '...'; 
-  
-    setTimeout(function() {
+  var remainingTime = minutes * 60;
+  var timerDisplay = document.getElementById('timerDisplay');
+  var alertSound = new Audio('./assets/sounds/alert.mp3');
+
+  timerDisplay.textContent = '...'; 
+
+  setTimeout(function() {
       timerInterval = setInterval(function() {
-        var minutes = Math.floor(remainingTime / 60);
-        var seconds = remainingTime % 60;
-        timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  
-        if (remainingTime <= 0) {
-          clearInterval(timerInterval);
-          timerDisplay.textContent = 'Tiempo terminado';
-          window.showModal('Tiempo finalizado!', `<b>Palabras encontradas:</b> ${foundWords} 
-                                              </br> <b>Puntaje total:</b> ${scoreFoundWords} puntos.`);
-        }
-  
-        remainingTime--;
+          var minutes = Math.floor(remainingTime / 60);
+          var seconds = remainingTime % 60;
+          timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+          if (remainingTime <= 10) {
+              timerDisplay.style.color = 'red';
+              if (remainingTime === 10) {
+                  alertSound.play(); 
+              }
+          } else {
+              timerDisplay.style.color = ''; 
+          }
+
+          if (remainingTime <= 0) {
+              clearInterval(timerInterval);
+              timerDisplay.style.color = 'black';
+              timerDisplay.textContent = 'Tiempo terminado';
+              window.showModal('Tiempo finalizado!', `<b>Palabras encontradas:</b> ${foundWords} 
+                                                    </br> <b>Puntaje total:</b> ${scoreFoundWords} puntos.`);
+          }
+
+          remainingTime--;
       }, 1000);
-    }, 100);
-  }
+  }, 100);
+}
 
 document.addEventListener('DOMContentLoaded', populateBoggleGrid);
 
