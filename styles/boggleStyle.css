@@ -97,3 +97,7 @@
   background-color: #d4edda; 
   transition: background-color 0.3s ease; 
 }
+
+.selectable {
+  background-color: #b1d7e4; 
+}

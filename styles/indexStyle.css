@@ -22,6 +22,10 @@ body{
   justify-content: center;
 }
 
+a{
+  cursor: pointer;
+}
+
 #stickyHeader {
   background-color: #f8f9fa;
   border: 1px solid #000;
@@ -85,3 +89,24 @@ body{
   color: red;
   font-weight: bold;
 }
+
+#scoresTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#scoresTable th,
+#scoresTable td {
+  padding: 12px;
+  text-align: center; 
+}
+
+#scoresTable th {
+  background-color: #f2f2f2;
+  color: black;
+}
+
+#scoresTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+

@@ -18,7 +18,7 @@
     <nav class="navbarContainer">
       <h3>Boggle</h3>
       <ul>
-        <li><a href="#">Opción 1</a></li>
+        <li><a id="showScoresButton">Ranking de jugadores</a></li>
         <li><a href="#">Opción 2</a></li>
         <li><a href="#">Opción 3</a></li>
         <li><a href="#">Opción 4</a></li>
@@ -27,10 +27,6 @@
   </header>
   <main class="containerMain">
     <section class="sectionLeft">
-      <h3>Ranking de jugadores</h3>
-      <div>
-        <button id="showScoresButton">Mostrar Puntuaciones</button>
-      </div>
     </section>
     <section class="sectionContainer">
       <h3>SECTION</h3>
@@ -117,12 +113,12 @@
       <span class="close">&times;</span>
       <h4>Tabla de Puntuaciones</h4>
       <hr/>
-      <table>
+      <table id="scoresTable">
         <thead>
           <tr>
             <th>Jugador</th>
-            <th>Puntuación</th>
             <th>Fecha</th>
+            <th>Puntuación</th>
           </tr>
         </thead>
         <tbody id="scoresTableBody">
@@ -130,6 +126,7 @@
       </table>
     </div>
   </div>
+
   <!-- Importación de scripts -->
   <script src="./scripts/apis/api.js"></script>
   <script src="./scripts/components/modal.js"></script>

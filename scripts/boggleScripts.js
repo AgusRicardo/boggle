@@ -75,8 +75,8 @@ document.getElementById("showScoresButton").onclick = function () {
   for (var i = 0; i < scores.length; i++) {
     scoresHtml += "<tr>";
     scoresHtml += "<td>" + scores[i].userName + "</td>";
-    scoresHtml += "<td>" + scores[i].score + "</td>";
     scoresHtml += "<td>" + scores[i].date + "</td>";
+    scoresHtml += "<td>" + scores[i].score + "</td>";
     scoresHtml += "</tr>";
   }
   scoresTableBody.innerHTML = scoresHtml;

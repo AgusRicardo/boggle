@@ -26,12 +26,14 @@ document.addEventListener("DOMContentLoaded", function() {
       var letter = event.target.textContent;
       if (wordInput.value.length < 16 && isValidLetter) {
         wordInput.value += letter;
+        updateSelectableCells(event.target);
       }
     };
 
     boggleCells.forEach((cell) => {
       cell.addEventListener("click", handleCellClick);
     });
+    updateSelectableCells(null); 
   };
 
   playButton.addEventListener("click", handlePlayButtonClick);
