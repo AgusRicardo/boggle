@@ -189,6 +189,7 @@ function addWordToTable(word, isValid) {
     scoreFoundWords = Math.max(0, scoreFoundWords - 1);
     scoreCell.classList.add("invalid-word");
   }
+  clearGame();
   newRow.appendChild(scoreCell);
 
   tableBody.appendChild(newRow);
@@ -215,4 +216,12 @@ function randomLetterClicked(event) {
       clickedCell.classList.remove('invalid-selection');
     }, 1000);
   }
+}
+
+function clearGame(){
+  selectedWord = '';
+  var selectedCells = document.querySelectorAll('#boggleGrid .boggleCell.selected');
+  var selectableCells = document.querySelectorAll('#boggleGrid .boggleCell.selectable');
+  selectedCells.forEach(cell => cell.classList.remove('selected'));
+  selectableCells.forEach(cell => cell.classList.remove('selectable'));
 }
