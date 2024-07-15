@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var handlePlayButtonClick = function() {
     var boggleWrapper = document.getElementById("boggleWrapper");
+    document.getElementById("wordsTable").style.display = "table";
     boggleWrapper.style.display = "flex";
     boggleWrapper.style.flexDirection = "column"; 
 

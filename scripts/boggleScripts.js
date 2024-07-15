@@ -130,6 +130,10 @@ function startTimer(minutes) {
           "Tiempo finalizado!",
           "<b>Palabras encontradas:</b> " + foundWords + " </br> <b>Puntaje total:</b> " + scoreFoundWords + " puntos."
         );
+        document.getElementById("validarButton").style.display = "none";
+        document.getElementById("boggleGrid").style.display = "none";
+        document.getElementById("wordInputContainer").style.display = "none";
+        document.getElementById("volverAJugarButton").style.display = "block";
       }
       remainingTime--;
     }, 1000);
@@ -217,6 +221,27 @@ function randomLetterClicked(event) {
     }, 1000);
   }
 }
+
+document.getElementById("volverAJugarButton").onclick = function () {
+  selectedTime = null;
+  clearInterval(timerInterval);
+  foundWords = 0;
+  scoreFoundWords = 0;
+  words = [];
+  selectedWord = '';
+  isValidLetter = true;
+
+  document.getElementById("userInputSection").style.display = "block";
+  document.getElementById("boggleGrid").style.display = "none";
+  document.getElementById("timerDisplay").style.display = "none";
+  document.getElementById("volverAJugarButton").style.display = "none";
+
+  clearGame();
+
+  document.getElementById("formedWord").textContent = "";
+
+  window.location.href = "index.html";
+};
 
 function clearGame(){
   selectedWord = '';

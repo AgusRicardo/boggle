@@ -61,10 +61,10 @@ a{
 .containerFooter{
   text-align: center;
   padding: 10px;
-  border: 1px solid #000;
 }
 
 #wordsTable{
+  display: none;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
