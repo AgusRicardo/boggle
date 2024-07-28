@@ -24,6 +24,7 @@ document.getElementById("playButton").onclick = function () {
     document.getElementById("boggleGrid").style.display = "grid";
     document.getElementById("timerDisplay").style.display = "block";
     startTimer(selectedTime);
+    handlePlayButtonClick();
   } else {
     if (userName.length < 3) {
       window.showModal(
