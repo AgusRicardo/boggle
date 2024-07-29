@@ -3,6 +3,7 @@ body{
 }
 .containerMain{
   display: flex;
+  background-color: #e9ecef;
 }
 .sectionLeft, .asideContainer {
   flex: 1;
@@ -12,7 +13,7 @@ body{
 }
 .sectionLeft, .asideContainer, .sectionContainer {
   padding: 10px;
-  border: 1px solid #000;
+  border-left: 1px solid #000;
   text-align: center;
   height: 90vh;
 }
@@ -27,8 +28,7 @@ a{
 }
 
 #stickyHeader {
-  background-color: #f8f9fa;
-  border: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 .navbarContainer {
   display: flex;
@@ -61,6 +61,7 @@ a{
 .containerFooter{
   text-align: center;
   padding: 10px;
+  border-top: 1px solid #000;
 }
 
 #wordsTable{
@@ -110,3 +111,10 @@ a{
   background-color: #f9f9f9;
 }
 
+#scoreHeader{
+  cursor: pointer;
+}
+
+#scoresModal{
+  display: none;
+}

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./styles/footerStyle.css">
   <link rel="stylesheet" href="./styles/modalStyle.css">
   <link rel="stylesheet" href="./styles/boggleStyle.css">
+  <link rel="stylesheet" href="./styles/mobileStyle.css">
   
   <link rel="icon" href="./assets/img/logoBoggle.ico">
   <title>Boggle</title>
@@ -18,18 +19,17 @@
     <nav class="navbarContainer">
       <h3>Boggle</h3>
       <ul>
-        <li><a id="showScoresButton">Ranking de jugadores</a></li>
-        <li><a href="#">Opción 2</a></li>
-        <li><a href="#">Opción 3</a></li>
-        <li><a href="#">Opción 4</a></li>
-    </ul>
+        <li><a id="showScoresButton">Ranking</a></li>
+        <li><a href="#footerForm">Contacto</a></li>
+      </ul>
     </nav>
   </header>
   <main class="containerMain">
     <section class="sectionLeft">
     </section>
     <section class="sectionContainer">
-      <h3>SECTION</h3>
+      <h3>A Jugar!</h3>
+      <h5 id="scoreRealTime"></h5>
       <div>
         <div id="userInputSection">
           <input type="text" id="userName" placeholder="Ingrese su nombre" autocomplete="off" maxlength="20" required>
@@ -82,20 +82,20 @@
     </aside>
   </main>
   <footer class="containerFooter">
-    <h3>FOOTER</h3>
     <div class="formClass">
       <form id="footerForm" class="containerFormFooter" method="post">
+        <h3>Contacto</h3>
         <div class="footerLabel">
           <label for="">Nombre: </label>
-          <input type="text" name="name" id="name" placeholder="Nombre" required>
+          <input type="text" name="name" id="name" placeholder="Nombre" autocomplete="off" required>
         </div>
         <div class="footerLabel">
           <label for="">Email:  </label>
-          <input type="email" name="email" id="email" placeholder="Correo" required>
+          <input type="email" name="email" id="email" placeholder="Correo" autocomplete="off" required>
         </div>
         <div class="footerLabel">
           <label for="">Mensaje: </label>
-          <textarea name="mensaje" id="mensaje" placeholder="Mensaje..." required></textarea>
+          <textarea name="mensaje" id="mensaje" placeholder="Mensaje..." autocomplete="off" required></textarea>
         </div>
         <div class="containerBtn">
           <input type="submit" value="Enviar" id="submit">
@@ -108,7 +108,7 @@
       </form>
     </div>
   </footer>
-  <div id="scoresModal" class="modal" style="display:none;">
+  <div id="scoresModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h4>Tabla de Puntuaciones</h4>
@@ -118,7 +118,7 @@
           <tr>
             <th>Jugador</th>
             <th>Fecha</th>
-            <th>Puntuación</th>
+            <th id="scoreHeader">Puntuación ▾</th>
           </tr>
         </thead>
         <tbody id="scoresTableBody">

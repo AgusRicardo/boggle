@@ -66,21 +66,33 @@ function saveScore(userName, score) {
 
 document.getElementById("showScoresButton").onclick = function () {
   var scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
+  
+  var sortOrder = 'desc'; 
 
-  scores.sort(function (a, b) {
-    return b.score - a.score;
-  });
+  function renderScores(scores, sortOrder) {
+    if (sortOrder === 'asc') {
+      scores.sort(function (a, b) {
+        return a.score - b.score;
+      });
+    } else {
+      scores.sort(function (a, b) {
+        return b.score - a.score;
+      });
+    }
 
-  var scoresTableBody = document.getElementById("scoresTableBody");
-  var scoresHtml = "";
-  for (var i = 0; i < scores.length; i++) {
-    scoresHtml += "<tr>";
-    scoresHtml += "<td>" + scores[i].userName + "</td>";
-    scoresHtml += "<td>" + scores[i].date + "</td>";
-    scoresHtml += "<td>" + scores[i].score + "</td>";
-    scoresHtml += "</tr>";
+    var scoresTableBody = document.getElementById("scoresTableBody");
+    var scoresHtml = "";
+    for (var i = 0; i < scores.length; i++) {
+      scoresHtml += "<tr>";
+      scoresHtml += "<td>" + scores[i].userName + "</td>";
+      scoresHtml += "<td>" + scores[i].date + "</td>";
+      scoresHtml += "<td>" + scores[i].score + "</td>";
+      scoresHtml += "</tr>";
+    }
+    scoresTableBody.innerHTML = scoresHtml;
   }
-  scoresTableBody.innerHTML = scoresHtml;
+
+  renderScores(scores, sortOrder);
 
   var modal = document.getElementById("scoresModal");
   modal.style.display = "block";
@@ -94,6 +106,12 @@ document.getElementById("showScoresButton").onclick = function () {
     if (event.target === modal) {
       modal.style.display = "none";
     }
+  };
+
+  var scoreHeader = document.getElementById("scoreHeader");
+  scoreHeader.onclick = function () {
+    sortOrder = sortOrder === 'asc' ? 'desc' : 'asc'; 
+    renderScores(scores, sortOrder);
   };
 };
 
@@ -191,13 +209,18 @@ function addWordToTable(word, isValid) {
     foundWords++;
   } else {
     scoreCell.textContent = "-1";
-    scoreFoundWords = Math.max(0, scoreFoundWords - 1);
+    scoreFoundWords--;
     scoreCell.classList.add("invalid-word");
   }
+  
   clearGame();
   newRow.appendChild(scoreCell);
-
   tableBody.appendChild(newRow);
+
+    var scoreRealTime = document.getElementById("scoreRealTime");
+    if (scoreRealTime) {
+      scoreRealTime.textContent = "Puntuación total: " + scoreFoundWords;
+    }
 }
 
 function randomLetterClicked(event) {
