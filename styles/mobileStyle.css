@@ -1,0 +1,29 @@
+@media (max-width: 600px) {
+  .sectionLeft, .asideContainer, .sectionContainer {
+    border: none;
+  }
+  .containerMain{
+    flex-direction: column;
+  }
+  .sectionLeft{
+    display: none;
+  }
+  .containerFormFooter{
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .containerFormFooter div {
+    flex-direction: column;
+  }
+  .containerBtn{
+    width: 50%;
+  }
+  .modal-content {
+    width: 80%;
+    padding: 8px;
+  }
+  #scoresTable th {
+    padding: 0;
+  }
+}

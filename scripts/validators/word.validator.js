@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
       errorSpan.style.color = "red";
       errorSpan.style.display = "block";
       formedWord.parentNode.appendChild(errorSpan);
+      clearGame();
     } else {
       const isValid = await validateWord(formedWord.value);
       addWordToTable(formedWord.value, isValid);
