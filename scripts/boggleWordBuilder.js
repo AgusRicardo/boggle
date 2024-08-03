@@ -1,3 +1,4 @@
+//Esta función realiza la grilla de las letras - Valida que no se encuentre ya creado el input donde se mostraran las palabras formadas - Valida que no se ingrese una palabra de más de 16 letras
 function handlePlayButtonClick() {
   var boggleWrapper = document.getElementById("boggleWrapper");
   document.getElementById("wordsTable").style.display = "table";

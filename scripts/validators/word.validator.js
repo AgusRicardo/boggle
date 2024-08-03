@@ -1,3 +1,4 @@
+//Valida que la palabra formada tenga al menos 3 letras, en caso de que no lo tenga tira un error - Si la palabra es valida la agrega a la tabla y le calcula el puntaje
 document.addEventListener("DOMContentLoaded", function() {
   var validarButton = document.getElementById("validarButton");
 

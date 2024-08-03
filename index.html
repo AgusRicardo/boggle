@@ -11,13 +11,13 @@
   <link rel="stylesheet" href="./styles/boggleStyle.css">
   <link rel="stylesheet" href="./styles/mobileStyle.css">
   
-  <link rel="icon" href="./assets/img/logoBoggle.ico">
+  <link rel="icon" href="./assets/img/logo-uai1.png">
   <title>Boggle</title>
 </head>
 <body>
   <header id="stickyHeader">
     <nav class="navbarContainer">
-      <h3>Boggle</h3>
+      <img src="./assets/img/logo-uai2.png" id="logo2" />
       <ul>
         <li><a id="showScoresButton">Ranking</a></li>
         <li><a href="#footerForm">Contacto</a></li>
@@ -28,10 +28,11 @@
     <section class="sectionLeft">
     </section>
     <section class="sectionContainer">
-      <h3>A Jugar!</h3>
-      <h5 id="scoreRealTime"></h5>
+      
       <div>
         <div id="userInputSection">
+          <h2>¡Boggle!</h2>
+          <h5 id="scoreRealTime"></h5>
           <input type="text" id="userName" placeholder="Ingrese su nombre" autocomplete="off" maxlength="20" required>
           <div class="containerTimeButtons">
             <p class="titleTimeSelect">Seleccionar duración de juego</p>
@@ -100,10 +101,11 @@
         <div class="containerBtn">
           <input type="submit" value="Enviar" id="submit">
         </div>
-        <div>
+        <div class="credits">
           <a href="https://github.com/AgusRicardo/boggle">
             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="github-icon">
           </a>
+          <h5>Agustin Ricardo - Gisela Dieguez</h5>
         </div>
       </form>
     </div>

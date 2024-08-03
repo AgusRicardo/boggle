@@ -44,7 +44,7 @@
 }
 
 #userName {
-  padding: 12px;
+  padding: 8px;
   border-radius: 4px;
 }
 
@@ -64,6 +64,8 @@
   padding: 10px 20px;
   margin: 5px;
   cursor: pointer;
+  background-color: #662938;
+  color: #fff;
 }
 
 #validarButton {

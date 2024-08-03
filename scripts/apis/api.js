@@ -1,3 +1,4 @@
+//Consulta a la API para validar la palabra ingresada
 async function validateWord(word) {
   const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
 

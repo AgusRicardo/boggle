@@ -1,5 +1,8 @@
+//Valida que la siguiente letra a seleccionar se encuentre en una posición válida
 function isCellSelectable(lastSelectedCell, currentCell) {
   if (!lastSelectedCell) return true;  
+
+  if (lastSelectedCell === currentCell) return false;
 
   var lastIndex = Array.prototype.indexOf.call(lastSelectedCell.parentNode.children, lastSelectedCell);
   var currentIndex = Array.prototype.indexOf.call(currentCell.parentNode.children, currentCell);
