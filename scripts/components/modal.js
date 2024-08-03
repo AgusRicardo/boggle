@@ -1,3 +1,4 @@
+//Componente generico de modal
 window.showModal = function(title, message, data) {
   var modal = document.createElement('div');
   modal.classList.add('modal');

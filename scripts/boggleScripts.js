@@ -17,6 +17,7 @@ for (var i = 0; i < timeButtons.length; i++) {
   };
 }
 
+//Método que se ejecuta una vez que se hace click en el botón de "Jugar" - Valida el input del nombre - Inicia el temporizador - Ejecuta la función handlePlayButtonClick
 document.getElementById("playButton").onclick = function () {
   var userName = document.getElementById("userName").value.trim();
   if (userName.length >= 3 && selectedTime !== null) {
@@ -46,6 +47,7 @@ function getRandomLetter() {
   return alphabet[Math.floor(Math.random() * alphabet.length)];
 }
 
+//Genera las celdas y le asigna una letra a cada una
 function populateBoggleGrid() {
   var cells = document.querySelectorAll("#boggleGrid .boggleCell");
   cells.forEach((cell, index) => {
@@ -64,6 +66,7 @@ function saveScore(userName, score) {
   localStorage.setItem("boggleScores", JSON.stringify(scores));
 }
 
+//Genera el modal de ranking de partidas con sus respectivas puntuaciones
 document.getElementById("showScoresButton").onclick = function () {
   var scores = JSON.parse(localStorage.getItem("boggleScores")) || [];
   
@@ -115,6 +118,7 @@ document.getElementById("showScoresButton").onclick = function () {
   };
 };
 
+//Contiene toda la lógica del temporizador - Al finalizar llama a la función saveScore la cual guarda el puntuaje y el nombre del jugador
 function startTimer(minutes) {
   var remainingTime = minutes * 60;
   var timerDisplay = document.getElementById("timerDisplay");
@@ -176,6 +180,7 @@ function calculateScore(wordLength) {
   return 0;
 }
 
+//Guarda la palabra y el puntaje en tiempo real - Valida que la palabra exista 
 function addWordToTable(word, isValid) {
   var formedWord = document.getElementById("formedWord");
   var tableBody = document.querySelector("#wordsTable tbody");
@@ -223,6 +228,7 @@ function addWordToTable(word, isValid) {
     }
 }
 
+//Agrega estilos a las letras validadas
 function randomLetterClicked(event) {
   var clickedCell = event.target;
   var clickedLetter = clickedCell.textContent;
@@ -246,6 +252,7 @@ function randomLetterClicked(event) {
   }
 }
 
+//Limpia todas las variables para volver a jugar
 document.getElementById("volverAJugarButton").onclick = function () {
   selectedTime = null;
   clearInterval(timerInterval);
@@ -267,6 +274,7 @@ document.getElementById("volverAJugarButton").onclick = function () {
   window.location.href = "index.html";
 };
 
+//Limpia variables, celdas seleccionadas y el input de la palabra formada
 function clearGame(){
   selectedWord = '';
   var selectedCells = document.querySelectorAll('#boggleGrid .boggleCell.selected');

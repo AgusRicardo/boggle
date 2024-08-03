@@ -1,3 +1,4 @@
+//Valida que se cumplan los criterios de los campos del formulario
 document.addEventListener('DOMContentLoaded', function() {
   var form = document.querySelector('.containerFormFooter');
 
@@ -25,5 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.showModal('Éxito', 'Formulario enviado correctamente');
     window.sendEmail(name, email, message);
+
+    form.reset(); 
+
   });
 });

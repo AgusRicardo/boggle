@@ -4,9 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%; 
+  width: 70vh; 
   margin: 0 auto;
-  padding: 10px;
 }
 
 .containerFormFooter div {
@@ -42,7 +41,7 @@
 a {
   text-decoration: none; 
   color: #333;
-  display: flex;
+
   align-items: center;
 }
 
@@ -51,4 +50,8 @@ img.github-icon {
   height: 24px; 
   margin-right: 8px; 
   margin-top: 4px;
+}
+
+.credits {
+  align-items: center;
 }
